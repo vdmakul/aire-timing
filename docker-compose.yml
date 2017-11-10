@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  aire-timing-web:
+    container_name: aire-timing-web
+    build: docker
+    ports:
+      - 4200:4200
+    volumes:
+      - ./:/var/www/aire-timing-web
+    tty: true
+    networks:
+      - aire-timing-network
+
+networks:
+ aire-timing-network:

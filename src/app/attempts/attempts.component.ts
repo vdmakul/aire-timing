@@ -12,9 +12,13 @@ export class AttemptsComponent implements OnInit {
 
   constructor(private _attemptsRepo: AttemptsRepo) { }
 
+  public runs: Run[];
+  public selectedRun: Run;
+
   public runResults: RunResults[];
 
   public ngOnInit(): void {
+    this.runs = [Run.HeatRun1, Run.HeatRun2, Run.SemiFinal, Run.Final];
     this.runResults = this._attemptsRepo.searchByRunAndClass(Run.Final, BoatClass.C1M);
   }
 

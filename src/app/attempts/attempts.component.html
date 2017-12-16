@@ -1,3 +1,17 @@
+<form>
+  <mat-form-field>
+    <mat-select placeholder="Run" [(ngModel)]="selectedRun" name="run">
+      <mat-option *ngFor="let run of runs" [value]="run">
+        {{run}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p> Selected value: {{selectedRun}} </p>
+</form>
+
+
+
 <div *ngFor="let result of runResults">
   <label>{{result | json}}</label>
   <br>

@@ -30,23 +30,35 @@ export enum Mark {
 
 
 export class RunResults {
-  startTime: Date;
-  stopTime: Date;
-  penalties: Penalty[];
-  marks: [Mark];
-  comments: string;
+
+  constructor(
+    public startTime: Date,
+    public stopTime: Date,
+    public penalties: Penalty[],
+    public marks: Mark[],
+    public comments: string) {
+  }
 }
 
 export class Attempt {
-  bib: number;
-  run: Run;
-  boatClass: BoatClass;
+
+  constructor(
+    public bib: number,
+    public run: Run,
+    public boatClass: BoatClass) {
+  }
+
 }
 
 export class HeatResults {
-  attempts: Attempt[];
+
+  constructor(public attempts: Attempt[]) {
+  }
+
 }
 
 export class CompetitionResults {
-  heats: HeatResults
+  constructor(public heats: HeatResults) {
+
+  }
 }

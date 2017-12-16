@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {MockData} from "./common/repos/mock.data";
+import {Component} from '@angular/core';
+import {MockData} from './common/repos/mock.data';
 
 @Component({
   selector: 'app-root',

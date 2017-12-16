@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {AttemptsRepo} from "../common/repos/attempts.repo";
-import {Attempt, BoatClass, Run, RunResults} from "../common/types";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AttemptsRepo} from '../common/repos/attempts.repo';
+import {BoatClass, Run, RunResults} from '../common/types';
 
 @Component({
   selector: 'app-attempts',

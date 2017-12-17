@@ -9,12 +9,14 @@ import {MockData} from './common/repos/mock.data';
 import {MaterialModule} from './material/material.module';
 import {FormsModule} from '@angular/forms';
 import {ParticipantsRepo} from './common/repos/participants.repo';
+import { RunSelectComponent } from './common/component/run-select/run-select.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AttemptsComponent
+    AttemptsComponent,
+    RunSelectComponent
   ],
   imports: [
     BrowserModule,

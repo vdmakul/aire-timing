@@ -1,8 +1,10 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {AttemptsRepo} from '../common/repos/attempts.repo';
 import {BoatClass, AuxRunResults, Run, RunResults} from '../common/types';
 import {MatTableDataSource} from '@angular/material';
 import {ParticipantsRepo} from '../common/repos/participants.repo';
+import {RunSelectComponent} from '../common/component/run-select/run-select.component';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-attempts',
@@ -10,26 +12,31 @@ import {ParticipantsRepo} from '../common/repos/participants.repo';
   styleUrls: ['./attempts.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AttemptsComponent implements OnInit {
+export class AttemptsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _attemptsRepo: AttemptsRepo,
     private _participantsRepo: ParticipantsRepo) {
   }
 
-  public runs: Run[];
-  public selectedRun: Run = Run.HeatRun1;
-
   public displayedColumns = ['bib', 'name', 'country', 'penalties', 'total', 'behind', 'qualified'];
   public dataSource = new MatTableDataSource<RunResults>();
 
+  private _sub: Subscription;
+
+  @ViewChild('runSelection')
+  public runSelection: RunSelectComponent;
+
   public ngOnInit(): void {
-    this.runs = [Run.HeatRun1, Run.HeatRun2, Run.SemiFinal, Run.Final];
-    this.selectRun();
+    this._sub = this.runSelection.selectedRun.subscribe((run: Run) => this.selectRun(run));
   }
 
-  public selectRun(): void {
-    const runResults = this._attemptsRepo.searchByRunAndClass(this.selectedRun, BoatClass.C1M);
+  public ngOnDestroy(): void {
+    this._sub.unsubscribe();
+  }
+
+  public selectRun(selectedRun: Run): void {
+    const runResults = this._attemptsRepo.searchByRunAndClass(selectedRun, BoatClass.C1M);
     this.dataSource.data = runResults.map((result: RunResults, index: number, results: RunResults[]) => {
       const behind = this.totalMs(result) - this.totalMs(results[0]);
 

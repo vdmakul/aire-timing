@@ -1,13 +1,4 @@
-<form>
-  <mat-form-field>
-    <mat-select placeholder="Run" [(ngModel)]="selectedRun" name="run" (selectionChange)="selectRun()">
-      <mat-option *ngFor="let run of runs" [value]="run">
-        {{run}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</form>
-
+<app-run-select #runSelection (selectedRun)="selectedRun"></app-run-select>
 
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">

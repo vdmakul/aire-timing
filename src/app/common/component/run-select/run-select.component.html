@@ -1,0 +1,9 @@
+<form>
+  <mat-form-field>
+    <mat-select placeholder="Run" name="run" (selectionChange)="selectedRun.emit($event.value)">
+      <mat-option *ngFor="let run of runs" [value]="run">
+        {{run}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

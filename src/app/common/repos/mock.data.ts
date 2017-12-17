@@ -26,9 +26,10 @@ export class MockData {
       const startDate = new Date(this._referenceDate);
       const finishDate = this.next(res.totals[_i]);
       const randomPenalties = this.randomPenalties(res.penalties[_i][0]);
+      const attempt = new Attempt(res.bibs[_i], run, boatClass);
       this._attemptsRepo.save(
-        new Attempt(res.bibs[_i], run, boatClass),
-        new RunResults(startDate, finishDate, randomPenalties, [], ''));
+        attempt,
+        new RunResults(attempt, startDate, finishDate, randomPenalties, [], ''));
     }
 
   }

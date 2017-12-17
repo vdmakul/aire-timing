@@ -32,11 +32,28 @@ export enum Mark {
 export class RunResults {
 
   constructor(
+    public attempt: Attempt,
     public startTime: Date,
     public stopTime: Date,
     public penalties: Penalty[],
     public marks: Mark[],
-    public comments: string) {
+    public comments: string,
+    public qualified?: boolean) {
+  }
+}
+
+export class OrdereredRunResults extends RunResults {
+
+  constructor(
+    attempt: Attempt,
+    startTime: Date,
+    stopTime: Date,
+    penalties: Penalty[],
+    marks: Mark[],
+    comments: string,
+    public behindMs: number,
+    qualified?: boolean) {
+    super(attempt, startTime, stopTime, penalties, marks, comments, qualified);
   }
 }
 

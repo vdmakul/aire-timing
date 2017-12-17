@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {AttemptsRepo} from './common/repos/attempts.repo';
 import {AttemptsComponent} from './attempts/attempts.component';
 import {MockData} from './common/repos/mock.data';
-import {MyMaterialModule} from './material/material.module';
+import {MaterialModule} from './material/material.module';
 import {FormsModule} from '@angular/forms';
 
 
@@ -17,7 +17,7 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    MyMaterialModule,
+    MaterialModule,
     FormsModule
   ],
   providers: [

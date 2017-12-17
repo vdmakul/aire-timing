@@ -1,0 +1,13 @@
+.mat-column-qualified {
+  flex: 0 0 30px !important;
+}
+
+
+/*to fill the whole cell with color*/
+/*https://stackoverflow.com/questions/47024346/fill-a-mat-tables-cell-with-a-color*/
+.mat-cell, .mat-header-cell {
+  flex: 1;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}

@@ -1,18 +1,58 @@
 <form>
   <mat-form-field>
-    <mat-select placeholder="Run" [(ngModel)]="selectedRun" name="run">
+    <mat-select placeholder="Run" [(ngModel)]="selectedRun" name="run" (selectionChange)="selectRun()">
       <mat-option *ngFor="let run of runs" [value]="run">
         {{run}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <p> Selected value: {{selectedRun}} </p>
 </form>
 
 
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
 
-<div *ngFor="let result of runResults">
-  <label>{{result | json}}</label>
-  <br>
+    <ng-container matColumnDef="rank">
+      <mat-header-cell *matHeaderCellDef> Rank</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.rank}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="bib">
+      <mat-header-cell *matHeaderCellDef> Bib</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.attempt.bib}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef> Country</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.country}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="penalties">
+      <mat-header-cell *matHeaderCellDef> Penalties</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{penalties(result.penalties)}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef> Total</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{totalMs(result) / 1000 | number : '1.2-2'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="behind">
+      <mat-header-cell *matHeaderCellDef> Behind</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.behindMs / 1000 | number : '1.2-2'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="qualified">
+      <mat-header-cell *matHeaderCellDef> Qual</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.qualified ? 'Q' : ''}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </div>

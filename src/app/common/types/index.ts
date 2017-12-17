@@ -28,6 +28,13 @@ export enum Mark {
   DSQ_C = 'DSQ-C'
 }
 
+export class Participant {
+  constructor(
+    public bib: number,
+    public name: string,
+    public country: string) {
+  }
+}
 
 export class RunResults {
 
@@ -42,9 +49,10 @@ export class RunResults {
   }
 }
 
-export class OrdereredRunResults extends RunResults {
+export class AuxRunResults extends RunResults {
 
   constructor(
+    public participant: Participant,
     attempt: Attempt,
     startTime: Date,
     stopTime: Date,

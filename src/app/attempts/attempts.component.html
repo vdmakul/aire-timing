@@ -24,12 +24,12 @@
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
-      <mat-cell *matCellDef="let result"> {{result.name}}</mat-cell>
+      <mat-cell *matCellDef="let result"> {{result.participant?.name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="country">
       <mat-header-cell *matHeaderCellDef> Country</mat-header-cell>
-      <mat-cell *matCellDef="let result"> {{result.country}}</mat-cell>
+      <mat-cell *matCellDef="let result"> {{result.participant?.country}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="penalties">

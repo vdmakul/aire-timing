@@ -1,27 +1,42 @@
 import {Injectable} from '@angular/core';
 import {AttemptsRepo} from './attempts.repo';
-import {Attempt, BoatClass, Run, RunResults} from '../types';
+import {Attempt, BoatClass, Participant, Run, RunResults} from '../types';
+import {ParticipantsRepo} from './participants.repo';
 
 @Injectable()
 export class MockData {
 
   private _referenceDate: Date = new Date();
 
-  constructor(private _attemptsRepo: AttemptsRepo) {
+  constructor(
+    private _attemptsRepo: AttemptsRepo,
+    private _participantsRepo: ParticipantsRepo
+  ) {
+
+    this._addParticipants(HEAT_1);
+    this._addParticipants(HEAT_2);
+    this._addParticipants(SEMI_FINALS);
+    this._addParticipants(FINALS);
 
     this._referenceDate.setMinutes(0);
     this._referenceDate.setSeconds(0);
 
-    this.addRun(HEAT_1, Run.HeatRun1, BoatClass.C1M);
+    this._addRun(HEAT_1, Run.HeatRun1, BoatClass.C1M);
     this._referenceDate.setHours(this._referenceDate.getHours() + 2);
-    this.addRun(HEAT_2, Run.HeatRun2, BoatClass.C1M);
+    this._addRun(HEAT_2, Run.HeatRun2, BoatClass.C1M);
     this._referenceDate.setHours(this._referenceDate.getHours() + 2);
-    this.addRun(SEMI_FINALS, Run.SemiFinal, BoatClass.C1M);
+    this._addRun(SEMI_FINALS, Run.SemiFinal, BoatClass.C1M);
     this._referenceDate.setHours(this._referenceDate.getHours() + 2);
-    this.addRun(FINALS, Run.Final, BoatClass.C1M);
+    this._addRun(FINALS, Run.Final, BoatClass.C1M);
   }
 
-  private addRun(res: Res, run: Run, boatClass: BoatClass): void {
+  private _addParticipants(res: Res): void {
+    for (let _i = 0; _i < res.bibs.length; _i++) {
+      this._participantsRepo.save(new Participant(res.bibs[_i], res.names[_i], res.countries[_i]));
+    }
+  }
+
+  private _addRun(res: Res, run: Run, boatClass: BoatClass): void {
     for (let _i = 0; _i < res.bibs.length; _i++) {
       const startDate = new Date(this._referenceDate);
       const finishDate = this.next(res.totals[_i]);

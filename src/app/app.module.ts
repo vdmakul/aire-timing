@@ -8,6 +8,7 @@ import {AttemptsComponent} from './attempts/attempts.component';
 import {MockData} from './common/repos/mock.data';
 import {MaterialModule} from './material/material.module';
 import {FormsModule} from '@angular/forms';
+import {ParticipantsRepo} from './common/repos/participants.repo';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {FormsModule} from '@angular/forms';
   ],
   providers: [
     MockData,
-    AttemptsRepo
+    AttemptsRepo,
+    ParticipantsRepo
   ],
   bootstrap: [AppComponent]
 })

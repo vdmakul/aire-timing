@@ -1,3 +1,27 @@
+.mat-column-bib {
+  flex: 0 0 30px !important;
+}
+
+.mat-column-name {
+  flex: 1 1 200px !important;
+}
+
+.mat-column-country {
+  flex: 0 0 50px !important;
+}
+
+.mat-column-penalties {
+  flex: 0 0 70px !important;
+}
+
+.mat-column-behind {
+  flex: 0 0 50px !important;
+}
+
+.mat-column-total {
+  flex: 0 0 50px !important;
+}
+
 .mat-column-qualified {
   flex: 0 0 30px !important;
 }

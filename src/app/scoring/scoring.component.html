@@ -1,0 +1,148 @@
+<app-run-select #runSelection></app-run-select>
+<app-class-select #classSelection></app-class-select>
+<mat-toolbar>
+  Judge group 2 (gates 4,5,6,7)
+</mat-toolbar>
+
+
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="newEntryDataSource">
+
+    <ng-container matColumnDef="bib">
+      <mat-header-cell *matHeaderCellDef> Bib</mat-header-cell>
+      <mat-cell *matCellDef="let result">
+        <mat-form-field class="penalty-input">
+          <input matInput type="text" pattern="[0-9]*" [ngModel]="result.attempt.bib">
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startTime">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let result"></mat-cell>
+    </ng-container>
+
+    <ng-container *ngFor="let gate of gates" matColumnDef="penalties{{gate.position}}">
+      <mat-header-cell *matHeaderCellDef> Gate {{gate.position}}</mat-header-cell>
+      <mat-cell *matCellDef="let result">
+        <mat-form-field class="penalty-input">
+          <input matInput type="text" pattern="(0|2|50)" [ngModel]="result[gate.position]">
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stopTime">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let result"> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="marks">
+      <mat-header-cell *matHeaderCellDef> Marks</mat-header-cell>
+
+      <mat-cell *matCellDef="let result">
+        <app-mark-select></app-mark-select>
+        <!--{{result.marks}}-->
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef> Comments</mat-header-cell>
+      <mat-cell *matCellDef="let result">
+        <mat-form-field>
+          <textarea matInput [ngModel]="result.comment" placeholder="Comments"
+                    matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5">
+          </textarea>
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="bib">
+      <mat-header-cell *matHeaderCellDef> Bib</mat-header-cell>
+      <mat-cell *matCellDef="let result">
+        {{result.attempt.bib}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startTime">
+      <mat-header-cell *matHeaderCellDef> Start time</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{result.startTime}}</mat-cell>
+    </ng-container>
+
+    <ng-container *ngFor="let gate of gates" matColumnDef="penalties{{gate.position}}">
+      <mat-header-cell *matHeaderCellDef> Gate {{gate.position}}</mat-header-cell>
+      <mat-cell *matCellDef="let result">
+        <mat-form-field class="penalty-input">
+          <input matInput type="text" pattern="(0|2|50)" [ngModel]="result[gate.position]">
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stopTime">
+      <mat-header-cell *matHeaderCellDef> Stop Time</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.stopTime}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="marks">
+      <mat-header-cell *matHeaderCellDef> Marks</mat-header-cell>
+      <mat-cell *matCellDef="let result"> {{result.marks | json}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef> Comments</mat-header-cell>
+      <mat-cell *matCellDef="let result">
+        <mat-cell *matCellDef="let result"> {{result.comment}}</mat-cell>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+
+      <mat-panel-title>
+        Personal data
+      </mat-panel-title>
+      <mat-panel-description>
+        Type your name and age
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Age">
+    </mat-form-field>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Self aware panel
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion>
+

@@ -1,0 +1,9 @@
+<form>
+  <mat-form-field>
+    <mat-select placeholder="Boat class" name="boatClass" (selectionChange)="selectedClass.emit($event.value)">
+      <mat-option *ngFor="let class of classes" [value]="class">
+        {{class}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

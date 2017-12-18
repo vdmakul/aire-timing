@@ -28,6 +28,13 @@ export enum Mark {
   DSQ_C = 'DSQ-C'
 }
 
+export class Gate {
+  constructor(
+    public position: number,
+    public reverse?: boolean) {
+  }
+}
+
 export class Participant {
   constructor(
     public bib: number,
@@ -44,7 +51,7 @@ export class RunResults {
     public stopTime: Date,
     public penalties: Penalty[],
     public marks: Mark[],
-    public comments: string,
+    public comments?: string,
     public qualified?: boolean) {
   }
 }
@@ -58,8 +65,8 @@ export class AuxRunResults extends RunResults {
     stopTime: Date,
     penalties: Penalty[],
     marks: Mark[],
-    comments: string,
     public behindMs: number,
+    comments?: string,
     qualified?: boolean) {
     super(attempt, startTime, stopTime, penalties, marks, comments, qualified);
   }

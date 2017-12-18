@@ -44,7 +44,7 @@ export class MockData {
       const attempt = new Attempt(res.bibs[_i], run, boatClass);
       this._attemptsRepo.save(
         attempt,
-        new RunResults(attempt, startDate, finishDate, randomPenalties, [], ''));
+        new RunResults(attempt, startDate, finishDate, randomPenalties, []));
     }
 
   }

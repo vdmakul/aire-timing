@@ -1,6 +1,10 @@
 import {NgModule} from '@angular/core';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {
+  MatButtonToggleModule,
+  MatExpansionModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatOptionModule, MatSelectModule, MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
 
 const MAT_MODULES  = [
   NoopAnimationsModule,
@@ -8,7 +12,11 @@ const MAT_MODULES  = [
   MatSelectModule,
   MatOptionModule,
   MatFormFieldModule,
-  MatTableModule
+  MatTableModule,
+  MatGridListModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatButtonToggleModule
 ];
 
 @NgModule({
